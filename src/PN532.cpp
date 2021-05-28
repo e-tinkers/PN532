@@ -183,7 +183,6 @@ uint32_t PN532::readRegister(uint16_t reg)
 /**************************************************************************/
 uint32_t PN532::writeRegister(uint16_t reg, uint8_t val)
 {
-    uint32_t response;
 
     pn532_packetbuffer[0] = PN532_COMMAND_WRITEREGISTER;
     pn532_packetbuffer[1] = (reg >> 8) & 0xFF;
@@ -804,7 +803,6 @@ uint8_t PN532::mifareultralight_WritePage (uint8_t page, uint8_t *buffer)
 /**************************************************************************/
 bool PN532::inDataExchange(uint8_t *send, uint8_t sendLength, uint8_t *response, uint8_t *responseLength)
 {
-    uint8_t i;
 
     pn532_packetbuffer[0] = 0x40; // PN532_COMMAND_INDATAEXCHANGE;
     pn532_packetbuffer[1] = inListedTag;
