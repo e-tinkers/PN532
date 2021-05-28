@@ -40,13 +40,13 @@ void PN532::PrintHex(const uint8_t *data, const uint32_t numBytes)
 #ifdef ARDUINO
     for (uint8_t i = 0; i < numBytes; i++) {
         if (data[i] < 0x10) {
-            SERIAL.print(" 0");
+            DMSG(" 0");
         } else {
-            SERIAL.print(' ');
+            DMSG(' ');
         }
-        SERIAL.print(data[i], HEX);
+        DMSG_HEX(data[i]);
     }
-    SERIAL.println("");
+    DMSG_STR("");
 #else
     for (uint8_t i = 0; i < numBytes; i++) {
         printf(" %2X", data[i]);
@@ -71,22 +71,22 @@ void PN532::PrintHexChar(const uint8_t *data, const uint32_t numBytes)
 #ifdef ARDUINO
     for (uint8_t i = 0; i < numBytes; i++) {
         if (data[i] < 0x10) {
-            SERIAL.print(" 0");
+            DMSG(" 0");
         } else {
-            SERIAL.print(' ');
+            DMSG(' ');
         }
-        SERIAL.print(data[i], HEX);
+        DMSG_HEX(data[i]);
     }
-    SERIAL.print("    ");
+    DMSG_STR("    ");
     for (uint8_t i = 0; i < numBytes; i++) {
         char c = data[i];
         if (c <= 0x1f || c > 0x7f) {
-            SERIAL.print('.');
+            DMSG('.');
         } else {
-            SERIAL.print(c);
+            DMSG(c);
         }
     }
-    SERIAL.println("");
+    DMSG_STR("");
 #else
     for (uint8_t i = 0; i < numBytes; i++) {
         printf(" %2X", data[i]);
